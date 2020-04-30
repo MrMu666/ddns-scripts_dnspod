@@ -34,7 +34,7 @@ fi
  
 #修改解析记录
 update_domain() {
-DATFILE=`curl -s -d "login_token=$username,$password&format=json&domain=$__DOMAIN&record_id=$__RECID&value=${__IP}&record_type=$__TYPE&record_line_id=0&sub_domain=$__HOST&ttl=120" "https://dnsapi.cn/Record.Modify"`
+DATFILE=`curl -s -d "login_token=$username,$password&format=json&domain=$__DOMAIN&record_id=$__RECID&value=${__IP}&record_type=$__TYPE&record_line_id=0&sub_domain=$__HOST&ttl=600" "https://dnsapi.cn/Record.Modify"`
 value=`jsonfilter -s "$DATFILE" -e "@.status.code"`
 if [ $value == 1 ];then
 	write_log 7 "修改解析记录host:[$__HOST],type:[$__TYPE],ip:[${__IP}]成功!"
